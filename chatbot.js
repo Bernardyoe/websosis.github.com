@@ -1,158 +1,142 @@
-document.addEventListener("DOMContentLoaded", () => {
-    // 1. Inject CSS link
-    const cssLink = document.createElement("link");
-    cssLink.rel = "stylesheet";
-    cssLink.href = "chatbot.css?v=" + new Date().getTime(); // Cache busting
-    document.head.appendChild(cssLink);
+// ==========================================
+// 1. CHATBOT UI INJECTION
+// Automatically adds the chat HTML to every page
+// ==========================================
+const chatbotHTML = `
+    <div class="chatbot-container">
+        
+        <button id="chatbot-toggle" class="chatbot-toggle">
+            <i class="fa-solid fa-message"></i>
+        </button>
 
-    // 2. Inject HTML structure
-    const chatbotHTML = `
-        <div class="chatbot-container">
-            <div class="chatbot-window" id="chatbotWindow">
-                <div class="chatbot-header">
-                    <div class="chatbot-header-info">
-                        <i class="fa-solid fa-robot"></i>
-                        <div>
-                            <h3>Nemo</h3>
-                            <p>Online</p>
-                        </div>
-                    </div>
-                    <button class="chatbot-close" id="chatbotClose"><i class="fa-solid fa-times"></i></button>
-                </div>
-                <div class="chatbot-messages" id="chatbotMessages">
-                    <div class="chat-bubble chat-bot">Halo! Saya Nemo, asisten virtual OSIS SMAK IPTO. Ada yang bisa saya bantu?</div>
-                    <div class="typing-indicator" id="typingIndicator">
-                        <span></span><span></span><span></span>
+        <div id="chatbot-window" class="chatbot-window">
+            <div class="chatbot-header">
+                <div class="chatbot-header-info">
+                    <i class="fa-solid fa-robot"></i>
+                    <div>
+                        <h3>Nemo Bot</h3>
+                        <p>Online</p>
                     </div>
                 </div>
-                <div class="chatbot-input">
-                    <input type="text" id="chatbotInput" placeholder="Ketik pesan disini..." autocomplete="off">
-                    <button id="chatbotSend"><i class="fa-solid fa-paper-plane"></i></button>
+                <button id="chatbot-close" class="chatbot-close">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            
+            <div id="chatbot-messages" class="chatbot-messages">
+                <div class="chat-bubble chat-bot">
+                    Halo! Nama saya Nemo. Ada yang bisa saya bantu seputar OSIS SMAK IPTO?
+                </div>
+                
+                <div id="typing-indicator" class="typing-indicator">
+                    <span></span><span></span><span></span>
                 </div>
             </div>
-            <button class="chatbot-toggle" id="chatbotToggle">
-                <i class="fa-solid fa-message"></i>
-            </button>
+            
+            <div class="chatbot-input">
+                <input type="text" id="chat-input" placeholder="Tanya Nemo di sini..." autocomplete="off">
+                <button id="send-btn"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
         </div>
-    `;
+        
+    </div> `;
 
-    const wrapper = document.createElement("div");
-    wrapper.innerHTML = chatbotHTML;
-    document.body.appendChild(wrapper.firstElementChild);
+// Insert the HTML at the end of the body
+document.body.insertAdjacentHTML('beforeend', chatbotHTML);
 
-    // 3. Logic
-    const toggleBtn = document.getElementById("chatbotToggle");
-    const closeBtn = document.getElementById("chatbotClose");
-    const windowEl = document.getElementById("chatbotWindow");
-    const messagesEl = document.getElementById("chatbotMessages");
-    const inputEl = document.getElementById("chatbotInput");
-    const sendBtn = document.getElementById("chatbotSend");
-    const typingIndicator = document.getElementById("typingIndicator");
 
-    // Load config.js dynamically to get the API key.
-    // - Locally:    create a gitignored config.js with your real key.
-    // - Production: GitHub Actions generates config.js from GitHub Secrets at deploy time.
-    function loadConfig() {
-        return new Promise((resolve) => {
-            if (window.CHATBOT_API_KEY) {
-                // Already loaded (e.g. from a previous script tag or hot reload)
-                return resolve(window.CHATBOT_API_KEY);
-            }
-            const script = document.createElement("script");
-            script.src = "config.js?v=" + new Date().getTime();
-            script.onload = () => resolve(window.CHATBOT_API_KEY || null);
-            script.onerror = () => resolve(null); // config.js not found — key unavailable
-            document.head.appendChild(script);
-        });
-    }
+// ==========================================
+// 2. DOM ELEMENTS & EVENT LISTENERS
+// ==========================================
+const chatbotToggle = document.getElementById('chatbot-toggle');
+const chatbotWindow = document.getElementById('chatbot-window');
+const chatbotClose = document.getElementById('chatbot-close');
+const chatInput = document.getElementById('chat-input');
+const sendBtn = document.getElementById('send-btn');
+const chatMessages = document.getElementById('chatbot-messages');
+const typingIndicator = document.getElementById('typing-indicator');
 
-    function toggleChat() {
-        windowEl.classList.toggle("active");
-        if (windowEl.classList.contains("active")) {
-            inputEl.focus();
-        }
-    }
-
-    toggleBtn.addEventListener("click", toggleChat);
-    closeBtn.addEventListener("click", toggleChat);
-
-    function addMessage(text, sender) {
-        const msgDiv = document.createElement("div");
-        msgDiv.className = `chat-bubble chat-${sender}`;
-        msgDiv.textContent = text;
-        messagesEl.insertBefore(msgDiv, typingIndicator);
-        messagesEl.scrollTop = messagesEl.scrollHeight;
-    }
-
-    function showTyping() {
-        typingIndicator.style.display = "flex";
-        messagesEl.scrollTop = messagesEl.scrollHeight;
-    }
-
-    function hideTyping() {
-        typingIndicator.style.display = "none";
-    }
-
-    // API Wrapper Function
-    async function askChatbotAPI(question) {
-        const apiKey = await loadConfig();
-
-        if (!apiKey) {
-            return "Maaf, chatbot belum dikonfigurasi. Silakan hubungi admin OSIS.";
-        }
-
-        try {
-            const response = await fetch('https://api.openai.com/v1/chat/completions', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${apiKey}`
-                },
-                body: JSON.stringify({
-                    model: "gpt-3.5-turbo",
-                    messages: [
-                        { role: "system", content: "Nama kamu adalah Nemo, asisten virtual untuk OSIS SMAK IPTO. Kamu ramah, membantu, dan tahu banyak tentang kegiatan OSIS, komunitas sekolah (seperti PMR, Dance, Music, Tech, dll), dan acara sekolah (seperti JAWA's Social Quest). Gunakan bahasa Indonesia yang sopan dan santai." },
-                        { role: "user", content: question }
-                    ],
-                    temperature: 0.7
-                })
-            });
-
-            if (!response.ok) {
-                const errorData = await response.json();
-                console.error("OpenAI Error:", errorData);
-                return "Maaf, terjadi masalah saat menghubungi Nemo. Silakan coba lagi nanti.";
-            }
-
-            const data = await response.json();
-            return data.choices[0].message.content;
-        } catch (error) {
-            console.error("Chatbot API Error:", error);
-            return "Maaf, terjadi kesalahan koneksi. Pastikan internet Anda aktif.";
-        }
-    }
-
-    async function handleSend() {
-        const text = inputEl.value.trim();
-        if (!text) return;
-
-        // User message
-        addMessage(text, "user");
-        inputEl.value = "";
-
-        // Show typing
-        showTyping();
-
-        // Call API
-        const reply = await askChatbotAPI(text);
-
-        // Bot reply
-        hideTyping();
-        addMessage(reply, "bot");
-    }
-
-    sendBtn.addEventListener("click", handleSend);
-    inputEl.addEventListener("keypress", (e) => {
-        if (e.key === "Enter") handleSend();
-    });
+// Toggle Chat Window
+chatbotToggle.addEventListener('click', () => {
+    chatbotWindow.classList.add('active');
+    chatbotToggle.style.transform = "scale(0)"; // Hide button smoothly
+    setTimeout(() => chatInput.focus(), 300);
 });
+
+chatbotClose.addEventListener('click', () => {
+    chatbotWindow.classList.remove('active');
+    chatbotToggle.style.transform = "scale(1)"; // Bring button back
+});
+
+// Send Message on Enter Key or Button Click
+sendBtn.addEventListener('click', handleSendMessage);
+chatInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        handleSendMessage();
+    }
+});
+
+
+// ==========================================
+// 3. CORE LOGIC (Handling Messages)
+// ==========================================
+async function handleSendMessage() {
+    const text = chatInput.value.trim();
+    if (!text) return;
+
+    // 1. Append User Message
+    appendMessage('user', text);
+    chatInput.value = '';
+
+    // 2. Show Typing Indicator by moving it to the bottom and displaying it
+    chatMessages.appendChild(typingIndicator); 
+    typingIndicator.style.display = 'block';
+    scrollToBottom();
+
+    // 3. Call your secure API
+    const reply = await askChatbotAPI(text);
+
+    // 4. Hide Typing Indicator and show real response
+    typingIndicator.style.display = 'none';
+    appendMessage('bot', reply);
+}
+
+function appendMessage(sender, text) {
+    const msgDiv = document.createElement('div');
+    // Use your specific CSS classes: chat-user or chat-bot
+    msgDiv.className = `chat-bubble ${sender === 'user' ? 'chat-user' : 'chat-bot'}`;
+    
+    // Securely inject text content
+    msgDiv.textContent = text; 
+    
+    // Insert message right before the typing indicator
+    chatMessages.insertBefore(msgDiv, typingIndicator);
+    scrollToBottom();
+}
+
+function scrollToBottom() {
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+
+// ==========================================
+// 4. SECURE API WRAPPER
+// ==========================================
+async function askChatbotAPI(question) {
+    try {
+        const response = await fetch('/api/chat', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ question: question })
+        });
+
+        const data = await response.json();
+        return data.reply || "Maaf, Nemo tidak mengerti itu.";
+        
+    } catch (error) {
+        console.error("Chatbot API Error:", error);
+        return "Maaf, terjadi kesalahan koneksi server. Coba hubungi Admin!";
+    }
+}

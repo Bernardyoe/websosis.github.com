@@ -11,86 +11,7 @@
 </head>
 
 <body>
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="brand" style="display:flex; align-items:center; text-decoration: none;">
-                <img src="assets/1000105640.png" alt="Logo OSIS IPTO"
-                    style="height: 50px; width: auto; border-radius: 8px; object-fit: cover;">
-            </a>
-            <ul class="nav-links">
-                <li><a href="index.html" class="nav-link active">Homepage</a></li>
-                <li><a href="aboutus.html" class="nav-link">About Us</a></li>
-                <li><a href="anggota.html" class="nav-link">Anggota</a></li>
-
-                <li class="dropdown">
-                    <a href="komunitas.html" class="nav-link">Komunitas <i class="fa-solid fa-chevron-down"
-                            style="font-size: 0.8em; margin-left: 5px;"></i></a>
-                    <div class="dropdown-content">
-
-                        <a href="komunitas-revival.html">Community of Revival</a>
-                        <a href="komunitas-podcast.html">Podcast Community</a>
-                        <a href="komunitas-pmr.html">PMR Community</a>
-                        <a href="komunitas-theatre.html">Theatre Community</a>
-                        <a href="komunitas-photography.html">Photography Community</a>
-                        <a href="komunitas-emagazine.html">E-Magazine Community</a>
-                        <a href="komunitas-cooking.html">Cooking Community</a>
-                        <a href="komunitas-mural.html">Mural Community</a>
-                        <a href="komunitas-dance.html">Dance Community</a>
-                        <a href="komunitas-paskibra.html">Paskibra Community</a>
-                        <a href="komunitas-music.html">Music Community</a>
-                        <a href="komunitas-tech.html">Tech Community</a>
-                    </div>
-                </li>
-                <li class="dropdown">
-                    <a href="acara.html" class="nav-link">Acara <i class="fa-solid fa-chevron-down"
-                            style="font-size: 0.8em; margin-left: 5px;"></i></a>
-                    <div class="dropdown-content">
-
-                        <a href="acara-jawa-social-quest.html">JAWA's Social Quest</a>
-                    </div>
-                </li>
-            </ul>
-            <a href="contactus.html" class="btn-contact">Contact Us</a>
-            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-                <span></span><span></span><span></span>
-            </button>
-        </div>
-    </nav>
-
-    <!-- Mobile Overlay -->
-    <div class="mobile-overlay" id="mobileOverlay"></div>
-
-    <!-- Mobile Navigation Drawer -->
-    <nav class="mobile-nav" id="mobileNav">
-        <a href="index.html" class="mobile-nav-link active">Homepage</a>
-        <a href="aboutus.html" class="mobile-nav-link">About Us</a>
-        <a href="anggota.html" class="mobile-nav-link">Anggota</a>
-        <a href="komunitas.html" class="mobile-nav-link" onclick="toggleMobileDropdown(event, 'komunitas-dd')">Komunitas
-            <i class="fa-solid fa-chevron-down"></i></a>
-        <div class="mobile-dropdown" id="komunitas-dd">
-
-            <a href="komunitas-revival.html">Community of Revival</a>
-            <a href="komunitas-podcast.html">Podcast Community</a>
-            <a href="komunitas-pmr.html">PMR Community</a>
-            <a href="komunitas-theatre.html">Theatre Community</a>
-            <a href="komunitas-photography.html">Photography Community</a>
-            <a href="komunitas-emagazine.html">E-Magazine Community</a>
-            <a href="komunitas-cooking.html">Cooking Community</a>
-            <a href="komunitas-mural.html">Mural Community</a>
-            <a href="komunitas-dance.html">Dance Community</a>
-            <a href="komunitas-paskibra.html">Paskibra Community</a>
-            <a href="komunitas-music.html">Music Community</a>
-            <a href="komunitas-tech.html">Tech Community</a>
-        </div>
-        <a href="acara.html" class="mobile-nav-link" onclick="toggleMobileDropdown(event, 'acara-dd')">Acara <i
-                class="fa-solid fa-chevron-down"></i></a>
-        <div class="mobile-dropdown" id="acara-dd">
-
-            <a href="acara-jawa-social-quest.html">JAWA's Social Quest</a>
-        </div>
-        <a href="contactus.html" class="mobile-contact-btn"><i class="fa-solid fa-envelope"></i> Contact Us</a>
-    </nav>
+    <div id="global-nav"></div>
 
     <!-- Main Content -->
     <main>
@@ -101,11 +22,11 @@
                     <p class="animate-fade-up delay-1">OSIS SMAK IPEKA Tomang adalah wadah kreativitas, kolaborasi, dan
                         kepemimpinan generasi muda untuk membawa perubahan positif yang berdampak nyata.</p>
                     <div class="btn-group animate-fade-up delay-2">
-                        <a href="aboutus.html" class="btn btn-primary">
+                        <a href="aboutus" class="btn btn-primary">
                             Discover More <i class="fa-solid fa-arrow-right"></i>
                         </a>
-                        <a href="acara.html" class="btn btn-outline">
-                            Our Events
+                        <a href="komunitas" class="btn btn-outline">
+                            Our Communities
                         </a>
                     </div>
                 </div>
@@ -155,14 +76,15 @@
                 <div class="tentang-content">
                     <span class="tentang-label reveal-item">Tentang Kami</span>
                     <h2 class="tentang-title reveal-item">OSIS SMAK IPEKA Tomang: Organisasi Siswa yang Berkomitmen pada
-                        <span class="tentang-accent">Pengembangan Karakter</span> dan Kepemimpinan</h2>
+                        <span class="tentang-accent">Pengembangan Karakter</span> dan Kepemimpinan
+                    </h2>
                     <p class="tentang-desc reveal-item">OSIS SMAK IPEKA Tomang (IPTO) merupakan wadah resmi bagi seluruh
                         siswa untuk bertumbuh dalam kepemimpinan, kreativitas, dan pelayanan. Kami berfokus pada
                         pembentukan generasi muda yang berdampak nyata melalui program yang terstruktur, kolaboratif,
                         dan berdasarkan iman Kristiani.</p>
                 </div>
                 <div class="tentang-logo reveal-item">
-                    <img src="assets/1000105640.png" alt="Logo OSIS SMAK IPTO" class="tentang-img-square">
+                    <img src="assets/Logo.png" alt="Logo OSIS SMAK IPTO" class="tentang-img-square">
                 </div>
             </div>
         </section>
@@ -222,10 +144,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Slide 2 -->
+                             <!-- Slide 2 -->
                             <div class="gallery-slide">
-                                <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=800&q=80"
-                                    alt="Class Meeting">
+                                <img src="assets/Dokumentasi/galeri.jpeg" alt="Class Meeting">
                                 <div class="gallery-overlay">
                                     <div class="gallery-info">
                                         <h4>Class Meeting</h4>
@@ -233,69 +154,63 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Slide 3 -->
+                             <!-- Slide 3 -->
                             <div class="gallery-slide">
-                                <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=800&q=80"
-                                    alt="Eco Vent">
+                                <img src="assets/Dokumentasi/galeri1.jpeg" alt="Behind the scenes">
                                 <div class="gallery-overlay">
                                     <div class="gallery-info">
-                                        <h4>Eco Vent</h4>
-                                        <p>Aksi peduli lingkungan sekolah</p>
+                                        <h4>Behind the scenes</h4>
+                                        <p>What we are like behind the scenes</p>
                                     </div>
                                 </div>
                             </div>
-                            <!-- Slide 4 -->
+                             <!-- Slide 4 -->
                             <div class="gallery-slide">
-                                <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800&q=80"
-                                    alt="Baksos OSIS">
+                                <img src="assets/Dokumentasi/galeri2.jpeg" alt="Behind the scenes">
                                 <div class="gallery-overlay">
                                     <div class="gallery-info">
-                                        <h4>Baksos OSIS</h4>
-                                        <p>Berbagi kasih dengan sesama</p>
+                                        <h4>Behind the scenes</h4>
+                                        <p>What we are like behind the scenes</p>
                                     </div>
                                 </div>
                             </div>
                             <!-- Slide 5 -->
                             <div class="gallery-slide">
-                                <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=800&q=80"
-                                    alt="Pensi SMAK IPTO">
+                                <img src="assets/Dokumentasi/galeri3.jpeg" alt="Pensi SMAK IPTO">
                                 <div class="gallery-overlay">
                                     <div class="gallery-info">
-                                        <h4>Pensi SMAK IPTO</h4>
-                                        <p>Penampilan bakat siswa/i</p>
+                                        <h4>MPLS 2026</h4>
+                                        <p>Masa Pengenalan Lingkungan Sekolah</p>
                                     </div>
                                 </div>
                             </div>
                             <!-- Slide 6 -->
                             <div class="gallery-slide">
-                                <img src="https://images.unsplash.com/photo-1524178232363-1fb28f74b573?w=800&q=80"
-                                    alt="Seminar Kepemimpinan">
+                                <img src="assets/Dokumentasi/galeri4.jpeg" alt="Seminar Kepemimpinan">
                                 <div class="gallery-overlay">
                                     <div class="gallery-info">
-                                        <h4>Seminar Kepemimpinan</h4>
-                                        <p>Membangun karakter pemimpin</p>
+                                        <h4>Sekbid 3 - Recycling</h4>
+                                        <p>Membuat tong sampah</p>
                                     </div>
                                 </div>
                             </div>
                             <!-- Slide 7 -->
                             <div class="gallery-slide">
-                                <img src="https://images.unsplash.com/photo-1541178735493-479c1a27ed24?w=800&q=80"
-                                    alt="Retreat OSIS">
+                                <img src="assets/Dokumentasi/galeri5.jpeg" alt="Retreat OSIS">
                                 <div class="gallery-overlay">
                                     <div class="gallery-info">
-                                        <h4>Retreat OSIS</h4>
-                                        <p>Mempererat hubungan pengurus</p>
+                                        <h4>CNY Osis</h4>
+                                        <p>Merayakan imlek bersamma</p>
                                     </div>
                                 </div>
                             </div>
-                            <!-- Slide 8 -->
+                             <!-- Slide 8 -->
                             <div class="gallery-slide">
-                                <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=800&q=80"
-                                    alt="JAWA Social Quest">
+                                <img src="assets/Dokumentasi/1000115378.jpg" alt="Behind the scenes">
                                 <div class="gallery-overlay">
                                     <div class="gallery-info">
-                                        <h4>JAWA's Social Quest</h4>
-                                        <p>Melayani masyarakat sekitar</p>
+                                        <h4>Behind the scenes</h4>
+                                        <p>What we are like behind the scenes</p>
                                     </div>
                                 </div>
                             </div>
@@ -316,57 +231,54 @@
 
     <!-- Footer -->
     <footer>
-        <div class="footer-grid">
-            <div class="footer-brand">
-                <h2>OSIS<span>SMAK</span>IPTO</h2>
-                <p>Membentuk pemimpin masa depan yang melayani dengan ketulusan dan berintegritas tinggi berdasarkan
-                    iman Kristiani.</p>
-                <div class="social-links">
-                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#"><i class="fa-brands fa-tiktok"></i></a>
-                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
-                </div>
-            </div>
-            <div class="footer-links">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="index.html">Homepage</a></li>
-                    <li><a href="aboutus.html">About Us</a></li>
-                    <li><a href="anggota.html">Anggota</a></li>
-                    <li></li>
-                    <li><a href="acara.html">Acara</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h4>Contact Us</h4>
-                <ul>
-                    <li><a href="#"><i class="fa-solid fa-location-dot" style="margin-right:10px;"></i> Jl. Green Ville
-                            Blok D, RT./RW:/RW.07/05, Duri Kepa, Kec. Kb. Jeruk, Kota Jakarta Barat, Daerah Khusus
-                            Ibukota Jakarta 11510, Indonesia</a></li>
-                    <li><a href="#"><i class="fa-solid fa-envelope" style="margin-right:10px;"></i>
-                            bernard_yoe@tomang.ipeka.sch.id</a></li>
-                    <li><a href="#"><i class="fa-brands fa-whatsapp" style="margin-right:10px;"></i> 08111346152</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 OSIS SMAK IPEKA Tomang. All rights reserved.</p>
-        </div>
+        <div id="global-footer"></div>
     </footer>
 
-    <script src="mobile-nav.js"></script>
+    <script>
+        // 1. Fetch the unified nav template
+        fetch('components/navbar.html')
+            .then(response => response.text())
+            .then(htmlContent => {
+                // 2. Inject the code layout into the placeholder target
+                document.getElementById('global-nav').innerHTML = htmlContent;
+                const currentPath = window.location.pathname.split('/').pop() || 'index';
+                document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(link => {
+                    if (link.getAttribute('href') === currentPath) {
+                        link.classList.add('active');
+                    }
+                });
+                const mobileNavScript = document.createElement('script');
+                mobileNavScript.src = 'mobile-nav.js';
+                document.body.appendChild(mobileNavScript);
+            })
+            .catch(error => console.error('Error constructing modular navbar wrapper:', error));
+
+        // 2. Fetch the unified footer template
+        fetch('components/footer.html')
+            .then(response => response.text())
+            .then(htmlContent => {
+                // Inject the footer code into the placeholder target
+                document.getElementById('global-footer').innerHTML = htmlContent;
+            })
+            .catch(error => console.error('Error constructing modular footer wrapper:', error));
+    </script>
+
     <script src="scroll-reveal.js"></script>
     <script>
         // ===== NAVBAR SCROLL SHADOW =====
-        var navbar = document.querySelector('.navbar');
         var scrollIndicator = document.getElementById('scrollIndicator');
         var ticking = false;
         window.addEventListener('scroll', function () {
             if (!ticking) {
                 requestAnimationFrame(function () {
                     var y = window.scrollY;
-                    navbar.classList.toggle('scrolled', y > 60);
+
+                    // 🚨 Grab the navbar dynamically inside the scroll event!
+                    var navbar = document.querySelector('.navbar');
+                    if (navbar) {
+                        navbar.classList.toggle('scrolled', y > 60);
+                    }
+
                     if (scrollIndicator) scrollIndicator.classList.toggle('hidden', y > 100);
                     ticking = false;
                 });
@@ -459,7 +371,7 @@
             });
         })();
     </script>
-<script src="chatbot.js?v=1.0.1"></script>
+    <script src="chatbot.js?v=1.0.1"></script>
 </body>
 
 </html>
