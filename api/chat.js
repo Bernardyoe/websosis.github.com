@@ -22,7 +22,11 @@ export default async function handler(req, res) {
             body: JSON.stringify({
                 model: "gpt-4o-mini", // Upgraded from 3.5: it's faster, smarter, and way cheaper!
                 messages: [
+<<<<<<< HEAD
                     { role: "system", content: "Nama kamu adalah Nemo, asisten virtual untuk OSIS SMAK IPTO. Kamu ramah, membantu, dan tahu banyak tentang kegiatan OSIS dan komunitas sekolah (seperti PMR, Dance, Music, Tech, dll). Gunakan bahasa Indonesia yang sopan dan santai." },
+=======
+                    { role: "system", content: "Nama kamu adalah Nemo, asisten virtual untuk OSIS SMAK IPTO. Kamu ramah, membantu, dan tahu banyak tentang kegiatan OSIS, komunitas sekolah (seperti PMR, Dance, Music, Tech, dll), dan acara sekolah (seperti JAWA's Social Quest). Gunakan bahasa Indonesia yang sopan dan santai." },
+>>>>>>> 565febd2beb539266e96728167a4ac319289f1e5
                     { role: "user", content: question }
                 ],
                 temperature: 0.7

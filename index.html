@@ -25,8 +25,13 @@
                         <a href="aboutus" class="btn btn-primary">
                             Discover More <i class="fa-solid fa-arrow-right"></i>
                         </a>
+<<<<<<< HEAD
                         <a href="komunitas" class="btn btn-outline">
                             Our Communities
+=======
+                        <a href="acara" class="btn btn-outline">
+                            Our Events
+>>>>>>> 565febd2beb539266e96728167a4ac319289f1e5
                         </a>
                     </div>
                 </div>
@@ -235,6 +240,7 @@
     </footer>
 
     <script>
+<<<<<<< HEAD
         // 1. Fetch the unified nav template
         fetch('components/navbar.html')
             .then(response => response.text())
@@ -263,6 +269,36 @@
             .catch(error => console.error('Error constructing modular footer wrapper:', error));
     </script>
 
+=======
+    // 1. Fetch the unified nav template
+    fetch('components/navbar.html')
+        .then(response => response.text())
+        .then(htmlContent => {
+            // 2. Inject the code layout into the placeholder target
+            document.getElementById('global-nav').innerHTML = htmlContent;
+            const currentPath = window.location.pathname.split('/').pop() || 'index';
+            document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(link => {
+                if (link.getAttribute('href') === currentPath) {
+                    link.classList.add('active');
+                }
+            });
+            const mobileNavScript = document.createElement('script');
+            mobileNavScript.src = 'mobile-nav.js';
+            document.body.appendChild(mobileNavScript);
+        })
+        .catch(error => console.error('Error constructing modular navbar wrapper:', error));
+
+   // 2. Fetch the unified footer template
+    fetch('components/footer.html')
+        .then(response => response.text())
+        .then(htmlContent => {
+            // Inject the footer code into the placeholder target
+            document.getElementById('global-footer').innerHTML = htmlContent;
+        })
+        .catch(error => console.error('Error constructing modular footer wrapper:', error));
+    </script>
+    
+>>>>>>> 565febd2beb539266e96728167a4ac319289f1e5
     <script src="scroll-reveal.js"></script>
     <script>
         // ===== NAVBAR SCROLL SHADOW =====
@@ -272,13 +308,21 @@
             if (!ticking) {
                 requestAnimationFrame(function () {
                     var y = window.scrollY;
+<<<<<<< HEAD
 
+=======
+                    
+>>>>>>> 565febd2beb539266e96728167a4ac319289f1e5
                     // 🚨 Grab the navbar dynamically inside the scroll event!
                     var navbar = document.querySelector('.navbar');
                     if (navbar) {
                         navbar.classList.toggle('scrolled', y > 60);
                     }
+<<<<<<< HEAD
 
+=======
+                    
+>>>>>>> 565febd2beb539266e96728167a4ac319289f1e5
                     if (scrollIndicator) scrollIndicator.classList.toggle('hidden', y > 100);
                     ticking = false;
                 });
